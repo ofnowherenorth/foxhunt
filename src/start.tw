@@ -1,0 +1,29 @@
+:: StoryTitle
+Foxhunt
+
+
+:: StorySubtitle
+Something
+
+
+:: StoryAuthor
+Soph.
+
+
+:: StorySettings
+ifid:f51d3397-0bd4-49a4-ba80-5b28e663d922
+
+
+:: the world
+It's [[cold]].
+
+:: cold
+Your ears are frozen numb from the harsh [[wind]] and you can feel your nose burn red. Your one respite from the cold is [[a small music box|music box]].
+
+:: wind
+== [cyan] wind
+Mt. Celeste has never been this forgiving.
+
+:: music box
+== [green] music box
+You aren't sure where you got it but it's warm in your hands.

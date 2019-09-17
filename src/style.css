@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+#ptitle {
+
+    font-family: "Raleway";
+    font-size: 18pt;
+
+    color: #fff;
+
+}
+
+#psub {
+
+    font-family: "Raleway";
+    font-size: 11pt;
+
+    color: #fff;
+
+}
+
+body {
+
+    background: #222;
+
+}
+
+.title {
+
+    background: white;
+    color: black;
+
+    line-height: 100%;
+
+    padding-left: 4px;
+    padding-right: 4px;
+
+    position: absolute;
+    font-size: 11pt;
+
+    font-family: "Raleway";
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    left: 16px;
+    top: calc(-5.5pt);
+
+}
+
+#phistory .phistory {
+
+    border: none;
+
+}
+
+#phistory .phistory > div, #passage > div {
+
+    background: black;
+
+    line-height: 100%;
+
+    max-width: 38em;
+    margin: auto;
+
+    position: relative!important;
+    top: 0px!important;
+
+    font-size: 11px;
+
+    color: white;
+
+    padding: 2%;
+    margin-top: 3.5%;
+
+}
+
+#phistory .phistory > div.thought, #passage > div.thought {
+
+    background: none;
+
+}
+
+#phistory .phistory .shadow, #passage .shadow {
+
+    position: absolute;
+    top: 8px;
+    left: 8px;
+
+    z-index: -1;
+
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+
+    border-right: 4px solid white;
+    border-bottom: 4px solid white;
+
+}
+
+#phistory .phistory .right-bracket, #passage .right-bracket {
+
+    position: absolute;
+    top: -4px;
+    right: -4px;
+
+    z-index: -1;
+
+    width: 4px;
+    height: 100%;
+
+    border-top: 4px solid white;
+    border-right: 4px solid white;
+    border-bottom: 4px solid white;
+
+}
+
+#phistory .phistory .left-bracket, #passage .left-bracket {
+
+    position: absolute;
+    top: -4px;
+    left: -4px;
+
+    z-index: -1;
+
+    width: 4px;
+    height: 100%;
+
+    border-top: 4px solid white;
+    border-left: 4px solid white;
+    border-bottom: 4px solid white;
+
+}
+
+a {
+
+    color: #f44;
+    border-color: #f44;
+    font-weight: bold;
+
+}
+
+#phistory .phistory a {
+
+    color: #999;
+
+}
+
+#phistory .phistory a.visited {
+
+    color: #faa;
+
+}
+
+a:hover {
+
+    color: #f88;
+
+}
