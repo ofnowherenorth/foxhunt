@@ -45,6 +45,8 @@ Foxhunt
 
 }
 
+html, body { min-height: 100%; }
+
 /* Default page styling */
 body {
 
@@ -54,6 +56,7 @@ body {
     
     background-image: url("./assets/vhs.gif");
     background-size: cover;
+    background-repeat: no-repeat;
 
 }
 
@@ -134,11 +137,11 @@ body.nameplate #story-info {
     font-family: "Nunito";
     font-size: 16px!important;
 
-    background: #3333;
+    background: #0003;
 
     line-height: 150%;
     
-    max-width: 38em;
+    max-width: 30em;
     margin: auto;
 
     position: relative!important;
@@ -234,13 +237,7 @@ em {
 
     display: inline-block;
 
-}
-
-.nameplate .name {
-
-    font-family: "Space Mono";
-    font-size: 16px;
-    font-weight: bold;
+    color: var(--light-color);
 
 }
 
