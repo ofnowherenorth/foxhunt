@@ -1,65 +1,125 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Raleway|Space+Mono|Nunito&display=swap');
+
+@-webkit-keyframes fadein {
+    from { opacity: 0.0; }
+    to { opacity: 1.0; }
+}
+
+@keyframes fadein {
+    from { opacity: 0.0; }
+    to { opacity: 1.0; }
+}
+
+#spinner {
+
+    transition: opacity 500ms ease;
+
+    background: var(--main-color);
+
+    width: 0.4em;
+    height: 0.4em;
+
+    margin: auto;
+    margin-top: 2%;
+
+    border-radius: 100%;
+
+}
+
+/* Default page styling */
+body {
+
+    --main-color: #f07;
+    --light-color: #f7a;
+    --lighter-color: #fad;
+    
+    background-image: url("./assets/vhs.gif");
+    background-size: cover;
+
+}
+
+
+body #color-background {
+
+    z-index: -99;
+
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+
+    transition: opacity 5s ease;
+
+    opacity: 0;
+    background: #333;
+
+}
+
+body.break #color-background {
+
+    opacity: 1;
+
+}
+
+
+body.nameplate #story-info {
+
+    display: none;
+    
+}
+
+
+#story-info {
+
+    width: 18em;
+
+    text-align: center;
+    margin: auto;
+
+}
+
 
 #ptitle {
 
-    font-family: "Raleway";
+    font-family: "Space Mono";
+    text-transform: uppercase;
     font-size: 18pt;
+    background: var(--main-color);
+    color: #333;
 
-    color: #fff;
+    display: inline-block;
+    padding: 4px;
+    padding-top: 0;
+    padding-bottom: 0;
 
 }
 
 #psub {
 
-    font-family: "Raleway";
+    font-family: "Space Mono";
     font-size: 11pt;
 
-    color: #fff;
+    width: 100%;
+
+    color: var(--light-color);
 
 }
 
-body {
 
-    background: #222;
+/* Passage + Panel Styling */
+#phistory .phistory, #passage { border: none; text-align: center; }
 
-}
+#phistory .phistory > div, #passage > div, #input-panel {
 
-.title {
+    font-family: "Nunito";
+    font-size: 16px!important;
 
-    background: white;
-    color: black;
+    background: #3333;
 
-    line-height: 100%;
-
-    padding-left: 4px;
-    padding-right: 4px;
-
-    position: absolute;
-    font-size: 11pt;
-
-    font-family: "Raleway";
-    font-weight: bold;
-
-    text-transform: uppercase;
-
-    left: 16px;
-    top: calc(-5.5pt);
-
-}
-
-#phistory .phistory {
-
-    border: none;
-
-}
-
-#phistory .phistory > div, #passage > div {
-
-    background: black;
-
-    line-height: 100%;
-
-    max-width: 38em;
+    line-height: 150%;
+    
+    max-width: 30em;
     margin: auto;
 
     position: relative!important;
@@ -67,36 +127,149 @@ body {
 
     font-size: 11px;
 
-    color: white;
+    color: #ddd;
 
     padding: 2%;
     margin-top: 3.5%;
 
 }
 
-#phistory .phistory > div.thought, #passage > div.thought {
+body.break #phistory .phistory > div, body.break #passage > div {
 
     background: none;
 
 }
 
-#phistory .phistory .shadow, #passage .shadow {
+#phistory .phistory > div.broadcast, #passage > div.broadcast {
 
-    position: absolute;
-    top: 8px;
-    left: 8px;
-
-    z-index: -1;
-
-    width: calc(100% - 8px);
-    height: calc(100% - 8px);
-
-    border-right: 4px solid white;
-    border-bottom: 4px solid white;
+    font-family: "Space Mono";
+    font-size: 7pt;
 
 }
 
-#phistory .phistory .right-bracket, #passage .right-bracket {
+
+.title {
+
+    background: #ddd;
+    color: #333;
+
+    line-height: 100%;
+
+    padding-left: 4px;
+    padding-right: 4px;
+
+    position: absolute;
+    font-size: 14pt;
+
+    font-family: "Space Mono";
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    left: 16px;
+    top: calc(-7pt);
+
+}
+
+.small {
+
+    font-size: 6pt;
+    color: var(--light-color);
+
+}
+
+
+.amy {
+
+    color: var(--main-color);
+
+}
+
+.risa {
+
+    color: #087;
+
+}
+
+.risa em {
+
+    color: #8ed;
+
+}
+
+
+strong {
+
+    color: var(--light-color)
+
+}
+
+em {
+
+    color: var(--lighter-color);
+
+}
+
+
+#phistory .phistory > div.nameplate, #passage > div.nameplate {
+
+    display: inline-block;
+
+}
+
+.nameplate .name {
+
+    font-family: "Space Mono";
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+
+.center { text-align: center }
+
+.fake-link {
+
+    transition: color 300ms ease, border-color 1000ms ease;
+
+    color: var(--main-color);
+    border-bottom: 3px solid #454545;
+    font-weight: bold;
+
+}
+
+#phistory .phistory .fake-link {
+
+    color: #777;
+
+}
+
+.fake-link:hover {
+
+    color: var(--light-color);
+    border-color: var(--light-color);
+
+}
+
+
+.left-bracket {
+
+    position: absolute;
+    top: 0;
+    left: -4px;
+
+    z-index: -1;
+
+    width: 4px;
+    height: calc(100% - 8px);
+
+    border-top: 4px solid #ddd;
+    border-left: 4px solid #ddd;
+    border-bottom: 4px solid #ddd;
+
+}
+
+.right-bracket {
 
     position: absolute;
     top: -4px;
@@ -107,51 +280,41 @@ body {
     width: 4px;
     height: 100%;
 
-    border-top: 4px solid white;
-    border-right: 4px solid white;
-    border-bottom: 4px solid white;
+    border-top: 4px solid #ddd;
+    border-right: 4px solid #ddd;
+    border-bottom: 4px solid #ddd;
 
 }
 
-#phistory .phistory .left-bracket, #passage .left-bracket {
+#input-panel {
 
-    position: absolute;
-    top: -4px;
-    left: -4px;
+    margin-top: 2%;
 
-    z-index: -1;
-
-    width: 4px;
-    height: 100%;
-
-    border-top: 4px solid white;
-    border-left: 4px solid white;
-    border-bottom: 4px solid white;
+    padding-top: 0;
+    padding-bottom: 0;
+    
+    max-width: 36em;
 
 }
 
-a {
+#input-panel input[type="text"] {
 
-    color: #f44;
-    border-color: #f44;
-    font-weight: bold;
+    transition: border-color 0.5s ease;
 
-}
+    font-family: "Nunito";
 
-#phistory .phistory a {
+    background: none;
+    color: #333;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid #353535;
 
-    color: #999;
-
-}
-
-#phistory .phistory a.visited {
-
-    color: #faa;
+    width: 100%;
 
 }
 
-a:hover {
+#input-panel input[type="text"]:focus {
 
-    color: #f88;
+    border-color: #333;
 
 }

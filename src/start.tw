@@ -11,19 +11,107 @@ Soph.
 
 
 :: StorySettings
-ifid:f51d3397-0bd4-49a4-ba80-5b28e663d922
+ifid: f51d3397-0bd4-49a4-ba80-5b28e663d922
 
 
-:: the world
-It's [[cold]].
+:: start [cls nameplate break]
+== [#f07] Foxhunt,next= "actual start"
+<span class="blurb">A story about a bad radio show.</span><br />
+<span class="fake-link">Click Anywhere to Start</span>
 
-:: cold
-Your ears are frozen numb from the harsh [[wind]] and you can feel your nose burn red. Your one respite from the cold is [[a small music box|music box]].
 
-:: wind
-== [cyan] wind
-Mt. Celeste has never been this forgiving.
+:: actual start
+== 
 
-:: music box
-== [green] music box
-You aren't sure where you got it but it's warm in your hands.
+:: ref [cls]
+== ,next= "static 1"
+
+<div class="center">This story uses a **parser**.
+<br /><br />
+Please don't let this scare you off! It is still, at it's core, a simple twine game, you just have to type your answers instead of clicking them. Sometimes, however you will just have to click / tap to advance the game. This will be represented by the blinking dot below.</div>
+
+-:: static 1 [static center cls]
+== [#ccc] \*\*\*\*, next="broadcast 1"
+
+The radio crackles to life with a burst of static.
+
+-:: broadcast 1 [cls broadcast]
+== [#ff0077] The First Broadcast, next= "am i live"
+<span class="amy">???: Hello?</span>
+
+
+-:: am i live [broadcast]
+== [#ff0077], next= "inagural"
+<span class="amy">???: Am I live?
+<br />
+???: Can you hear me?</span>
+
+
+-:: inagural [broadcast]
+== [#ff0077], next="intros"
+<span class="amy">???: I guess this is our inagural broadcast?</span>
+<br /><br />
+*(A low whisper can be heard in the recording, though it's too quiet to make out, followed by a warm giggle)*
+<br /><br />
+<span class="amy">???: Sorry, that was my- <span class="small">cohost? </span>-cohost. You probably won't hear much from her, but rest assured she's here.</span>
+
+
+-:: intros [broadcast]
+== [#ff0077], next="count of monte cristo"
+<span class="amy">???: We didn't really expect everything to work today, so we don't really have anything planned, but I suppose we should just get right into it.</span>
+<br />
+AMY: My name is **Amy**, and I am here with <span class="risa">**Risa**</span>.
+<br />
+AMY: At school this year, we have been given an assignemnt to research something we love. I'v always liked the idea of running a talk show, and I guess Risa's along for the ride...
+
+AMY: Now, if only we had something to talk about.
+
+
+-:: count of monte cristo [broadcast]
+== [#ff0077], next="atrocity"
+RISA: Oh, I have something-<br />
+AMY: Oh, then go ahead.<br />
+RISA: Well, you remember how we had to read *The Count of Monte Cristo* about a month back.<br />
+AMY: OH, THAT WAS DREADFUL.</span><br /><br />
+*(There's some more giggling)*<br /><br />
+RISA: It was pretty dense.<br/>
+RISA: But there was a thing Faria-<br />
+AMY: Who?<br />
+RISA: The old guy, who died.<br />
+AMY: OH, PRISON DAD.<br /><br />
+
+*(This time the laughter takes a while to subside)*
+
+
+-:: atrocity [broadcast]
+== [#087], next= "skipping tape"
+RISA: Anyways, there was this thing that he said,<br/>
+RISA: About murder being something so inherently grotesque to us that the idea doesn't even cross our minds.<br/><br/>
+RISA: And while I think that the idea's dumb it got me thinking about the fact that there was a point where the idea of an atrocity didn't even exist; there was a time when there weren't even words to describe it.<br />
+RISA: There was an original murderer, an original terrorist, there was a first person to do so many awful acts. They didn't just decide to do something awful, they thought up the very *idea* of it...
+
+
+-:: skipping tape [cls]
+== ,next= "end of track 1"
+You skip ahead in the recording a little bit, since you know that this rambling goes on for a little while.
+
+
+-:: end of track 1 [broadcast cls]
+== [#087], next="review 1"
+RISA: Sorry, that was like 20 minutes of dumb shit.<br /><br />
+*<span class="quote">(You make a note to yourself to edit that out)</span>*<br/><br/>
+AMY: Don't worry about it.<br/>
+AMY: We needed something to stretch this out to half an hour, and we've been recording for like-<br/><br/>
+*(There's a pause as she checks the time)*<br/><br/>
+AMY: Almost fourty minutes now.<br/><br/>
+*(The recording ends abrutly, interrupting the last bout of laughter)*
+
+
+-:: review 1 [cls]
+It's a mess, but Amy's cute and you have like a month to record the ten half-hour tapes you promised you've already forged all of your progress logs and lied about running the radio show legally.
+oh also, "wont hear much from her" my ass
+
+-:: placeholder
+literature analysis
+spinel
+"not that truth, some other truth"
