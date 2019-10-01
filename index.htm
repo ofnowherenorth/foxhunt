@@ -51,8 +51,10 @@ html, body { min-height: 100%; }
 body {
 
     --main-color: #f07;
-    --light-color: #f7a;
-    --lighter-color: #fad;
+    --light-color: #bbb;
+    --lighter-color: #fff;
+
+    --second-color: #0a9;
     
     background-image: url("./assets/vhs.gif");
     background-size: cover;
@@ -74,7 +76,7 @@ body #color-background {
     transition: opacity 5s ease;
 
     opacity: 0;
-    background: #333;
+    background: #111;
 
 }
 
@@ -137,7 +139,7 @@ body.nameplate #story-info {
     font-family: "Nunito";
     font-size: 16px!important;
 
-    background: #0003;
+    background: #0007;
 
     line-height: 150%;
     
@@ -149,7 +151,7 @@ body.nameplate #story-info {
 
     font-size: 11px;
 
-    color: #ddd;
+    color: #999;
 
     padding: 2%;
     margin-top: 3.5%;
@@ -274,8 +276,6 @@ em {
     top: 0;
     left: -4px;
 
-    z-index: -1;
-
     width: 4px;
     height: calc(100% - 8px);
 
@@ -288,13 +288,11 @@ em {
 .right-bracket {
 
     position: absolute;
-    top: -4px;
+    top: 0;
     right: -4px;
 
-    z-index: -1;
-
     width: 4px;
-    height: 100%;
+    height: calc(100% - 8px);
 
     border-top: 4px solid #ddd;
     border-right: 4px solid #ddd;
@@ -320,7 +318,7 @@ em {
     font-family: "Nunito";
 
     background: none;
-    color: #333;
+    color: #fffa;
     text-align: center;
     border: none;
     border-bottom: 2px solid #353535;
@@ -331,7 +329,7 @@ em {
 
 #input-panel input[type="text"]:focus {
 
-    border-color: #333;
+    border-color: #fffa;
 
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "script.js" */
 const passageDataRegex = /^== ?(?:\[(.*?)\] ?)?(?:([^,\n]*),? ?)?(?:prompt ?= ?"(.*?)",? ?)?(?:save_to ?= ?"(.*?)",? ?)?(?:next ?= ?"(.*?)")?/m //add save_to
@@ -394,16 +392,14 @@ window.getInput = (prompt, callback) => {
 
     }
     
-    $("#spinner").before("<div id=\"input-panel\"><div class=\"left-bracket\" /><form><input type=\"text\" name=\"felix\" /></form><div class=\"right-bracket\" /></div>")
+    $("#spinner").before("<div id=\"input-panel\"><div class=\"left-bracket\" /><form><input type=\"text\" name=\"parser\" /></form><div class=\"right-bracket\" /></div>")
     $("#input-panel input[type=\"text\"").attr("placeholder", prompt || "...");
 
     $("#input-panel form").on("submit", (e) => {
 
         e.preventDefault();
 
-        console.log(e)
-
-        if (window.save_to) window.info[save_to] = 0; // get info here
+        if (window.save_to) window.info[save_to] = $("#input-panel input").val()
 
         if (callback(e,$("#input-panel input").val()) === false) killInput()
 
@@ -415,7 +411,6 @@ window.advance = () => {
 
     if (window.nextPassage) {
 
-        killInput()
         gotoPassage(window.nextPassage)
 
     } else {
@@ -450,11 +445,7 @@ $(document).ready(() => {
 
 $(document).on("click",(e) => {
 
-    console.log(e.target.name)
-
-    if (e.which === 1 && e.target.name !== "felix") advance()
-
-    console.log(e)
+    if (e.which === 1 && e.target.name !== "parser") advance()
 
 })
 
@@ -518,17 +509,19 @@ $(document).on("showpassage", (e, passage) => {
     $("body").addClass(tags)
 
     if (_color.length) passage.passage.source = `<div class="${tags}">${_src}<div class="left-bracket" style="border-color: ${_color};" /><div class="right-bracket" style="border-color: ${_color};" /></div>`
-    else { passage.passage.source = `<div class="${tags}"><div class="left-bracket" />${_src}<div class="right-bracket" /></div>` }
+    else { passage.passage.source = `<div class="${tags}">${_src}<div class="left-bracket" /><div class="right-bracket" /></div>` }
 
 })
 
 $(document).on("showpassage:after", (e, passage) => {
 
-    if (window.choices.length) {
+    if (window.choices.length || window.save_to) {
 
         let _p = (window.prompt) ? window.prompt : "..."
         
         getInput(_p, (e,v) => {
+
+            if (!window.choices.length) advance()
 
             for (let i = 0; i < window.choices.length; i++) {
 
@@ -558,9 +551,35 @@ $(document).on("showpassage:after", (e, passage) => {
 
     if (tags.includes("cls") || tags.includes("clear") || tags.includes("reset")) $("#phistory").html("")
 
-})</script><tw-passagedata pid="1" name="StorySubtitle" tags="" position="100,100">Something</tw-passagedata><tw-passagedata pid="2" name="StoryAuthor" tags="" position="225,100">Soph.</tw-passagedata><tw-passagedata pid="3" name="start" tags="cls nameplate break" position="350,100">== [#f07] Foxhunt,next= &quot;actual start&quot;
-&lt;span class=&quot;blurb&quot;&gt;A story about a bad radio show.&lt;/span&gt;&lt;br /&gt;
-&lt;span class=&quot;fake-link&quot;&gt;Click Anywhere to Start&lt;/span&gt;</tw-passagedata><tw-passagedata pid="4" name="actual start" tags="" position="475,100">==</tw-passagedata><tw-passagedata pid="5" name="ref" tags="cls" position="600,100">== ,next= &quot;static 1&quot;
+})</script><tw-passagedata pid="1" name="StorySubtitle" tags="" position="100,100">Something</tw-passagedata><tw-passagedata pid="2" name="StoryAuthor" tags="" position="225,100">Soph.</tw-passagedata><tw-passagedata pid="3" name="start" tags="cls nameplate break" position="350,100">== [var(--main-color)] Foxhunt,next= &quot;actual start&quot;
+**A story about a bad radio show.**&lt;br /&gt;
+Language warning I guess?&lt;br/&gt;
+&lt;span class=&quot;fake-link&quot;&gt;Click Anywhere to Start&lt;/span&gt;</tw-passagedata><tw-passagedata pid="4" name="actual start" tags="cls" position="475,100">== [var(--main-color)] Broadcast 1, next=&quot;graveyard&quot;
+&quot;It is three hours past midnight.&quot;</tw-passagedata><tw-passagedata pid="5" name="graveyard" tags="" position="600,100">== [var(--main-color)],next= &quot;a whole city of no one&quot;
+&quot;I&#39;d say hi to the graveyard shift, but I think that we all know absolutely nobody is listening.&quot;</tw-passagedata><tw-passagedata pid="6" name="a whole city of no one" tags="" position="725,100">== [var(--main-color)], next= &quot;enter player 2&quot;
+&quot;We&#39;re broadcasting to the whole city and not any single one of you can hear us, because we&#39;re on this god forsaken piece of *&#39;technology&#39;* at this god awful hour.&quot;</tw-passagedata><tw-passagedata pid="7" name="enter player 2" tags="" position="850,100">== [#aaa], next= &quot;martial law&quot;
+*( The sound of equipment being adjusted and a metal chair scraping against the floor fill the mic for a moment,&lt;br /&gt;After another, a second voice comes through the recording )*</tw-passagedata><tw-passagedata pid="8" name="martial law" tags="" position="975,100">== [var(--second-color)], next= &quot;efficiency&quot;
+&quot;There actually used to be regulations on this stuff, only so many radio waves you can fit in the air after all-&quot;</tw-passagedata><tw-passagedata pid="9" name="efficiency" tags="" position="1100,100">== [var(--main-color)], next= &quot;silence&quot;
+&quot;Such an inneficient means of data transmission.&quot;</tw-passagedata><tw-passagedata pid="10" name="silence" tags="" position="1225,100">== [#aaa], next= &quot;a new train&quot;
+*( There&#39;s a pause as the second girl loses her train of thought )*</tw-passagedata><tw-passagedata pid="11" name="a new train" tags="" position="100,225">== [var(--second-color)], next= &quot;big things&quot;
+&quot;They had big plans for the future-&lt;br/&gt;For us I mean.&quot;</tw-passagedata><tw-passagedata pid="12" name="big things" tags="" position="225,225">== [var(--second-color)], next= &quot;if only&quot;
+&quot;Always thought we&#39;d acomplish some big things. Sentient computers, transhumanism... peace on earth-&quot;</tw-passagedata><tw-passagedata pid="13" name="if only" tags="" position="350,225">== [var(--main-color)], next= &quot;cut it&quot;
+&quot;If only they could see us now: &lt;br /&gt;Tearing apart their shitty technology.&quot;</tw-passagedata><tw-passagedata pid="14" name="cut it" tags="" position="475,225">== ,next= &quot;surprise its a parser&quot;
+It&#39;s a mess.
+&lt;br/&gt;&lt;br/&gt;
+*(You turn off the tape and get up)*</tw-passagedata><tw-passagedata pid="15" name="surprise its a parser" tags="" position="600,225">== ,prompt=&quot;Where to?&quot;, save_to= &quot;goto&quot;, next=&quot;proccess move recording room&quot;
+**At some points this game will use a more traditional parser approach to input, at such events, try to keep commands as simple and accurate as possible (The computer is dumb, it doesn&#39;t really understand english all that well).**&lt;br/&gt;&lt;br/&gt;
+
+You think that &lt;span class=&quot;mari&quot;&gt;Mari&lt;/span&gt; is in the *bedroom north of you*.
+&lt;br/&gt;
+You can just barely see into the *&quot;studio&quot;* to your *east.*</tw-passagedata><tw-passagedata pid="16" name="proccess move recording room" tags="" position="725,225">&lt;% console.clear();
+console.log(`&quot;${window.info[&quot;goto&quot;]}&quot;`)
+
+if (window.info[&quot;goto&quot;] == &quot;n&quot; || window.info[&quot;goto&quot;] == &quot;north&quot; || window.info[&quot;goto&quot;] == &quot;bedroom&quot;) {
+    window.gotoPassage(&quot;mari is cute&quot;)
+} else if (window.info[&quot;goto&quot;] == &quot;s&quot; || window.info[&quot;goto&quot;] == &quot;south&quot; || window.info[&quot;goto&quot;] == &quot;studio&quot;) {
+    window.gotoPassage(&quot;studio&quot;)
+}%&gt;</tw-passagedata><tw-passagedata pid="17" name="mari is cute" tags="cls" position="850,225">This would be a passage interacting with Mari that would advance the story</tw-passagedata><tw-passagedata pid="18" name="studio" tags="cls" position="975,225">This would be flavour text 2.0</tw-passagedata><tw-passagedata pid="19" name="ref" tags="cls" position="1100,225">== ,next= &quot;static 1&quot;
 
 &lt;div class=&quot;center&quot;&gt;This story uses a **parser**.
 &lt;br /&gt;&lt;br /&gt;

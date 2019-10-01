@@ -15,13 +15,88 @@ ifid: f51d3397-0bd4-49a4-ba80-5b28e663d922
 
 
 :: start [cls nameplate break]
-== [#f07] Foxhunt,next= "actual start"
-<span class="blurb">A story about a bad radio show.</span><br />
+== [var(--main-color)] Foxhunt,next= "actual start"
+**A story about a bad radio show.**<br />
+Language warning I guess?<br/>
 <span class="fake-link">Click Anywhere to Start</span>
 
 
-:: actual start
-== 
+:: actual start [cls]
+== [var(--main-color)] Broadcast 1, next="graveyard"
+"It is three hours past midnight."
+
+
+:: graveyard
+== [var(--main-color)],next= "a whole city of no one"
+"I'd say hi to the graveyard shift, but I think that we all know absolutely nobody is listening."
+
+
+:: a whole city of no one
+== [var(--main-color)], next= "enter player 2"
+"We're broadcasting to the whole city and not any single one of you can hear us, because we're on this god forsaken piece of *'technology'* at this god awful hour."
+
+:: enter player 2
+== [#aaa], next= "martial law"
+*( The sound of equipment being adjusted and a metal chair scraping against the floor fill the mic for a moment,<br />After another, a second voice comes through the recording )*
+
+
+:: martial law
+== [var(--second-color)], next= "efficiency"
+"There actually used to be regulations on this stuff, only so many radio waves you can fit in the air after all-"
+
+:: efficiency
+== [var(--main-color)], next= "silence"
+"Such an inneficient means of data transmission."
+
+:: silence
+== [#aaa], next= "a new train"
+*( There's a pause as the second girl loses her train of thought )*
+
+
+:: a new train
+== [var(--second-color)], next= "big things"
+"They had big plans for the future-<br/>For us I mean."
+
+:: big things
+== [var(--second-color)], next= "if only"
+"Always thought we'd acomplish some big things. Sentient computers, transhumanism... peace on earth-"
+
+:: if only
+== [var(--main-color)], next= "cut it"
+"If only they could see us now: <br />Tearing apart their shitty technology."
+
+
+:: cut it
+== ,next= "surprise its a parser"
+It's a mess.
+<br/><br/>
+*(You turn off the tape and get up)*
+
+:: surprise its a parser
+== ,prompt="Where to?", save_to= "goto", next="proccess move recording room"
+**At some points this game will use a more traditional parser approach to input, at such events, try to keep commands as simple and accurate as possible (The computer is dumb, it doesn't really understand english all that well).**<br/><br/>
+
+You think that <span class="mari">Mari</span> is in the *bedroom north of you*.
+<br/>
+You can just barely see into the *"studio"* to your *east.*
+
+
+:: proccess move recording room
+<% console.clear();
+console.log(`"${window.info["goto"]}"`)
+
+if (window.info["goto"] == "n" || window.info["goto"] == "north" || window.info["goto"] == "bedroom") {
+    window.gotoPassage("mari is cute")
+} else if (window.info["goto"] == "s" || window.info["goto"] == "south" || window.info["goto"] == "studio") {
+    window.gotoPassage("studio")
+}%>
+
+:: mari is cute [cls]
+This would be a passage interacting with Mari that would advance the story
+
+
+:: studio [cls]
+This would be flavour text 2.0
 
 :: ref [cls]
 == ,next= "static 1"

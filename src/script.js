@@ -58,16 +58,14 @@ window.getInput = (prompt, callback) => {
 
     }
     
-    $("#spinner").before("<div id=\"input-panel\"><div class=\"left-bracket\" /><form><input type=\"text\" name=\"felix\" /></form><div class=\"right-bracket\" /></div>")
+    $("#spinner").before("<div id=\"input-panel\"><div class=\"left-bracket\" /><form><input type=\"text\" name=\"parser\" /></form><div class=\"right-bracket\" /></div>")
     $("#input-panel input[type=\"text\"").attr("placeholder", prompt || "...");
 
     $("#input-panel form").on("submit", (e) => {
 
         e.preventDefault();
 
-        console.log(e)
-
-        if (window.save_to) window.info[save_to] = 0; // get info here
+        if (window.save_to) window.info[save_to] = $("#input-panel input").val()
 
         if (callback(e,$("#input-panel input").val()) === false) killInput()
 
@@ -79,7 +77,6 @@ window.advance = () => {
 
     if (window.nextPassage) {
 
-        killInput()
         gotoPassage(window.nextPassage)
 
     } else {
@@ -114,11 +111,7 @@ $(document).ready(() => {
 
 $(document).on("click",(e) => {
 
-    console.log(e.target.name)
-
-    if (e.which === 1 && e.target.name !== "felix") advance()
-
-    console.log(e)
+    if (e.which === 1 && e.target.name !== "parser") advance()
 
 })
 
@@ -182,17 +175,19 @@ $(document).on("showpassage", (e, passage) => {
     $("body").addClass(tags)
 
     if (_color.length) passage.passage.source = `<div class="${tags}">${_src}<div class="left-bracket" style="border-color: ${_color};" /><div class="right-bracket" style="border-color: ${_color};" /></div>`
-    else { passage.passage.source = `<div class="${tags}"><div class="left-bracket" />${_src}<div class="right-bracket" /></div>` }
+    else { passage.passage.source = `<div class="${tags}">${_src}<div class="left-bracket" /><div class="right-bracket" /></div>` }
 
 })
 
 $(document).on("showpassage:after", (e, passage) => {
 
-    if (window.choices.length) {
+    if (window.choices.length || window.save_to) {
 
         let _p = (window.prompt) ? window.prompt : "..."
         
         getInput(_p, (e,v) => {
+
+            if (!window.choices.length) advance()
 
             for (let i = 0; i < window.choices.length; i++) {
 
